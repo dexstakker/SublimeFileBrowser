@@ -38,7 +38,14 @@
   //     "hg_path": "%ProgramFiles%/TortoiseHg/hg.exe"
   // To disable hg integration set to empty string:
   //     "hg_path": ""
-  "hg_path": "hg",
+  "hg_path": "",
+
+  // Path to hg executable.
+  // Wildcards are supported, e.g. if you use TortoiseHg it would be:
+  //     "hg_path": "%ProgramFiles%/TortoiseHg/hg.exe"
+  // To disable hg integration set to empty string:
+  //     "hg_path": ""
+  "gw_path": "gwscout.sh",
 
   // true: the default, pressing Enter on a directory uses the current view.
   // false: a new view is created.
