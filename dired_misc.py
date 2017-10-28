@@ -568,13 +568,13 @@ class CallVCS(DiredBaseCommand):
         self.vcs_state = dict(path=path)
         self.view.erase_regions('M')
         self.view.erase_regions('?')
-        for vcs in ['git', 'hg']:
+        for vcs in ['git', 'hg', 'gw']:
             self.start(vcs)
         self.watch_threads()
 
     def watch_threads(self):
         '''wait while all checks are done'''
-        if not all(vcs in self.vcs_state for vcs in ['git', 'hg']):
+        if not all(vcs in self.vcs_state for vcs in ['git', 'hg', 'gw']):
             sublime.set_timeout(self.watch_threads, 100)
             return
         if 'changed_items' in self.vcs_state:
@@ -617,8 +617,11 @@ class CallVCS(DiredBaseCommand):
         args = {'git_status': ['status', '--untracked-files=all', '-z'],
                 'git_root':   ['rev-parse', '--show-toplevel'],
                 'hg_status':  ['status'],
-                'hg_root':    ['root']}
-        sep = {'hg': '\n', 'git': '\x00' if ST3 else '\00'}
+                'hg_root':    ['root'],
+                'gw_status':  ['status'],
+                'gw_root':    ['root']
+                }
+        sep = {'hg': '\n', 'git': '\x00' if ST3 else '\00', 'gw': '\n'}
         status, root, shell = '', '', True if NT else False
         path = self.vcs_state['path']
         try:
