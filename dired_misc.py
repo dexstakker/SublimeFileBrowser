@@ -584,6 +584,7 @@ class CallVCS(DiredBaseCommand):
         '''launch threads'''
         command = self.view.settings().get('%s_path' % vcs, '')
         if command:  # user can set empty string to disable integration with vcs
+            print("DEXDEX: vcs = " + vcs + " cmd = " + command)
             vars(self)['%s_thread' % vcs] = threading.Thread(target=self.check, args=(vcs, command))
             vars(self)['%s_thread' % vcs].start()
         else:
@@ -630,7 +631,7 @@ class CallVCS(DiredBaseCommand):
             status = str(status, 'utf-8').split(sep[vcs]) if ST3 else status.split(sep[vcs])
             p = subprocess.Popen([command] + args['%s_root' % vcs], stdin=subprocess.PIPE, stdout=subprocess.PIPE, cwd=path, shell=shell)
             root = p.communicate()[0].decode('utf-8').strip('\n')
-            print("DEXDEX:" + root)
+            print("DEXDEX:" + command)
         except:
             # on Windows exception is not being raised if cwd is not None and shell=True
             self.vcs_state.update({vcs: False})
