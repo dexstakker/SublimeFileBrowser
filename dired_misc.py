@@ -593,6 +593,7 @@ class CallVCS(DiredBaseCommand):
     def check(self, vcs, command):
         '''target function for a thread; worker'''
         status, root = self.get_output(vcs, self.expand_command(vcs, command))
+        print("DEXDEX5: root = " + root)
         if status and root:
             changed_items = self.vcs_state.get('changed_items', {})
             changed_items.update(dict(self.set_value(vcs, root, i) for i in status if i != ''))
