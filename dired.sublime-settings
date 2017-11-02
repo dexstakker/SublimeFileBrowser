@@ -45,7 +45,7 @@
   //     "hg_path": "%ProgramFiles%/TortoiseHg/hg.exe"
   // To disable hg integration set to empty string:
   //     "hg_path": ""
-  "gw_path": "gwscout.sh",
+  "gw_path": "gwscout.py",
 
   // true: the default, pressing Enter on a directory uses the current view.
   // false: a new view is created.
