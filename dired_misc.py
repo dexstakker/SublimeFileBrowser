@@ -626,6 +626,7 @@ class CallVCS(DiredBaseCommand):
         sep = {'hg': '\n', 'git': '\x00' if ST3 else '\00', 'gw': '\n'}
         status, root, shell = '', '', True if NT else False
         path = self.vcs_state['path']
+        print("DEXDEX: command = " + command)
         try:
             p = subprocess.Popen([command] + args['%s_status' % vcs], stdin=subprocess.PIPE, stdout=subprocess.PIPE, cwd=path, shell=shell)
             status = p.communicate()[0]
